@@ -3,148 +3,12 @@
 <head>
    <title>Pathfinding Algorithm Visualizer</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-div {
-   border: solid 1pt black;
-   padding: 0px;
-   margin: 90px 20px;
-}
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-tr{
-    background-color: rgb(121, 224, 231);
-    font:bold;
-    font-size:14px;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-#footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-   background:#999;
-}
-button{
-  background-color: rgb(121, 224, 231);
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn {
-  background-color: rgb(121, 224, 231);
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1;}
-.dropdown:hover .dropdown-content {display: block;}
-.dropdown:hover .dropbtn {background-color:  #7c42e7;}
-
-.show {display: block;}
- 
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.btn-group button {
-  background-color: rgb(121, 224, 231); /* Green background */
-  color: white; /* White text */
-  border:white;
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
-}
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.btn-group button:not(:last-child) {
-  border-right: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #7c42e7;
-}
-</style>
+   <link rel="stylesheet" href="GridPagefix.css">
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <script type="text/javascript">
   var TableBackgroundNormalColor = "rgb(121, 224, 231)";
@@ -167,7 +31,6 @@ button{
         }
       }
     }
-   
   </script>  
 
 <body style="background-image:url('images/Grid.jpg');">
@@ -175,15 +38,14 @@ button{
 Grid Page
 </h1>
 <ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#news">Information</a></li>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">Algorithms</a></li>
   <li><a href="#contact">Grids</a></li>
-  <li><a href="">Statistics</a></li>
 </ul>
 
-<div class="container"  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)" style="background-color: rgb(250, 128, 128);">
-<img src="images/Green.png"> Start <img src="images/Red.png"> End<img src="images/Black.png">Obstacles <img src="images/yellow.jpg"> Correct Path <img src="images/Blue.png"> Blocked Path  
-  <button id="myBtn" style="background-color: rgb(250, 128, 128); text-align: right;" onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">Information</button>
+<div class="container"  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
+<img src="images/Green.png"> Start <img src="images/Red.png"> End<img src="images/Black.png">Obstacles <img src="images/"> Correct Path <img src="images/"> Blocked Path  
+  <button id="myBtn" style="background-color: rgb(250, 128, 128); text-align: right;">Information</button>
   
   <!-- The Modal -->
   <div id="myModal" class="modal">
@@ -228,7 +90,8 @@ Grid Page
     <h2>Grids</h2>            
     <table class="table table-hover">
       <tr onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
-            <td class="btn-group dropup" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
+            <td>
+                    <div class="btn-group" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
                     <button onclick="myFunction()" class="dropbtn">Algorithms</button>
                     <button class="button" style="color: white; padding: 11.5px 12px;">Copy Grid</button>
                     <button class="button" style="color: white; padding: 11.5px 12px;">Paste Grid</button>
@@ -238,12 +101,14 @@ Grid Page
                       <a href="#contact">Breadth First</a>
                       <a href="#">Depth First</a>  
                     </div>
-                <input class="button" style="background-color: rgb(121, 224, 231); /* Green background */
-                border: white;
-                color: white; /* White text */
-                padding: 10px 24px; /* Some padding */
-                cursor: pointer; /* Pointer/hand icon */
-                float: left; /* Float the buttons side by side */"type="reset" value="Reset">  
+            </td>
+            <td><input type="reset" value="Reset" style="background-color: rgb(121, 224, 231);  margin-top: -9px; margin-left: 30px;
+                color: white;  padding: 11.5px 226px;  font-size: 16px; border: none; cursor: pointer;
+                display: block;
+                position: absolute; top: 462px;
+                left: 47.7%;
+                transform: translateY(-50%) translateX(-50%);"></td>
+            <td>    <div class="btn-group" style="float: right; position: relative; margin-top: -10px; margin-left: 120px;">
                 <button onclick="myFunction()" class="dropbtn">Algorithms</button>
                 <button class="button" style="color: white; padding: 11.5px 12px">Copy Grid</button>
                 <button class="button" style="color: white; padding: 11.5px 12px">Paste Grid</button>
@@ -252,129 +117,118 @@ Grid Page
                   <a href="#about">Dijkstra's Algorithm</a>
                   <a href="#contact">Breadth First</a>
                   <a href="#">Depth First</a>  
-                </div> 
-                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-
-                <script>
-                var xyValues = [
-                  {x:50, y:7},
-                  {x:60, y:8},
-                  {x:70, y:8},
-                  {x:80, y:9},
-                  {x:90, y:9},
-                  {x:100, y:9},
-                  {x:110, y:10},
-                  {x:120, y:11},
-                  {x:130, y:14},
-                  {x:140, y:14},
-                  {x:150, y:15}
-                ];
-                
-                new Chart("myChart", {
-                  type: "scatter",
-                  data: {
-                    datasets: [{
-                      pointRadius: 4,
-                      pointBackgroundColor: "rgb(0,0,255)",
-                      data: xyValues
-                    }]
-                  },
-                  options: {
-                    legend: {display: false},
-                    scales: {
-                      xAxes: [{ticks: {min: 40, max:160}}],
-                      yAxes: [{ticks: {min: 6, max:16}}],
-                    }
-                  }
-                });
-                </script>
-                
-              </td>
+                </div>
+              </div> </td>
+              
             </tr>
         <tr  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
-          <td class="btn-group dropup" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
-                    <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-                    <button class="button" style="color: white; padding: 11.5px 12px;">Copy Grid</button>
-                    <button class="button" style="color: white; padding: 11.5px 12px;">Paste Grid</button>
-                    <div id="myDropdown" class="dropdown-content" style="left: 0;">
-                      <a href="#home">A* </a>
-                      <a href="#about">Dijkstra's Algorithm</a>
-                      <a href="#contact">Breadth First</a>
-                      <a href="#">Depth First</a>  
-                    </div>
-                <input class="button" style="background-color: rgb(121, 224, 231); /* Green background */
-                border: white; /* Green border */
-                color: white; /* White text */
-                padding: 10px 24px; /* Some padding */
-                cursor: pointer; /* Pointer/hand icon */
-                float: left; /* Float the buttons side by side */"type="reset" value="Reset">  
+            <td>
+            <div class="dropdown" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
                 <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-                <button class="button" style="color: white; padding: 11.5px 12px">Copy Grid</button>
-                <button class="button" style="color: white; padding: 11.5px 12px">Paste Grid</button>
-                <div id="myDropdown" class="dropdown-content">
+                <button class="button" style="color: white;">Copy Grid</button>
+                <button class="button" style="color: white;">Paste Grid</button>
+                <div id="myDropdown" class="dropdown-content" style=" position: absolute;
+                top: 100%; /* Bottom of button */
+                right: 0;
+                margin-left: -100px; /* More to the left */">
                   <a href="#home">A* </a>
                   <a href="#about">Dijkstra's Algorithm</a>
                   <a href="#contact">Breadth First</a>
                   <a href="#">Depth First</a>  
-                </div> 
-            </td>
-        </tr>
-        <tr  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
-          <td class="btn-group dropup" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
+                </div>
+              </div>
+        </td>
+        <td><input type="reset" value="Reset" style="background-color: rgb(121, 224, 231);  margin-top: -9px; margin-left: 30px;
+            color: white;  padding: 16px 221px;  font-size: 16px; border: none; cursor: pointer;
+            display: block;
+            position: absolute; top: 620px;
+            left: 47.7%;
+            transform: translateY(-50%) translateX(-50%);"></td>
+        <td>    <div class="dropdown" style="float: right; margin-top: -10px; margin-left: 80px;">
             <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-            <button class="button" style="color: white; padding: 11.5px 12px;">Copy Grid</button>
-            <button class="button" style="color: white; padding: 11.5px 12px;">Paste Grid</button>
-            <div id="myDropdown" class="dropdown-content" style="left: 0;">
+            <button class="button" style="color: white;">Copy Grid</button>
+                <button class="button" style="color: white;">Paste Grid</button>
+            <div id="myDropdown" class="dropdown-content">
               <a href="#home">A* </a>
               <a href="#about">Dijkstra's Algorithm</a>
               <a href="#contact">Breadth First</a>
               <a href="#">Depth First</a>  
             </div>
-        <input class="button" style="background-color: rgb(121, 224, 231); /* Green background */
-        border:  white; /* Green border */
-        color: white; /* White text */
-        padding: 10px 24px; /* Some padding */
-        cursor: pointer; /* Pointer/hand icon */
-        float: left; /* Float the buttons side by side */"type="reset" value="Reset">  
-        <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-        <button class="button" style="color: white; padding: 11.5px 12px">Copy Grid</button>
-        <button class="button" style="color: white; padding: 11.5px 12px">Paste Grid</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#home">A* </a>
-          <a href="#about">Dijkstra's Algorithm</a>
-          <a href="#contact">Breadth First</a>
-          <a href="#">Depth First</a>  
-        </div> 
-    </td>
+          </div> 
+          </td>
+        </tr>
+        <tr  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
+            <td>
+                <div class="dropdown" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
+                    <button onclick="myFunction()" class="dropbtn">Algorithms</button>
+                    <button class="button" style="color: white;">Copy Grid</button>
+                    <button class="button" style="color: white;">Paste Grid</button>
+                    <div id="myDropdown" class="dropdown-content" style=" position: absolute;
+                    top: 100%; /* Bottom of button */
+                    right: 0;
+                    margin-left: -100px; /* More to the left */">
+                      <a href="#home">A* </a>
+                      <a href="#about">Dijkstra's Algorithm</a>
+                      <a href="#contact">Breadth First</a>
+                      <a href="#">Depth First</a>  
+                    </div>
+                  </div>
+             </td>
+             <td><input type="reset" value="Reset" style="background-color: rgb(121, 224, 231);  margin-top: -9px; margin-left: 30px;
+                color: white;  padding: 16px 221px;  font-size: 16px; border: none; cursor: pointer;
+                display: block;
+                position: absolute; top: 775px;
+                left: 47.7%;
+                transform: translateY(-50%) translateX(-50%);"></td>
+            <td>    <div class="dropdown" style="float: right; margin-top: -10px; margin-left: 80px;">
+                <button onclick="myFunction()" class="dropbtn">Algorithms</button>
+                <button class="button" style="color: white;">Copy Grid</button>
+                <button class="button" style="color: white;">Paste Grid</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="#home">A* </a>
+                  <a href="#about">Dijkstra's Algorithm</a>
+                  <a href="#contact">Breadth First</a>
+                  <a href="#">Depth First</a>  
+                </div>
+              </div> 
+              </tr>
+              </td>
           </tr>
           <tr  onmouseover="ChangeBackgroundColor(this)" onmouseout="RestoreBackgroundColor(this)">
-            <td class="btn-group dropup" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
-              <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-              <button class="button" style="color: white; padding: 11.5px 12px;">Copy Grid</button>
-              <button class="button" style="color: white; padding: 11.5px 12px;">Paste Grid</button>
-              <div id="myDropdown" class="dropdown-content" style="left: 0;">
-                <a href="#home">A* </a>
-                <a href="#about">Dijkstra's Algorithm</a>
-                <a href="#contact">Breadth First</a>
-                <a href="#">Depth First</a>  
+            <td>
+            <div class="dropdown" style="float: left; position: relative; margin-top: -10px; margin-left: -8px;">
+                <button onclick="myFunction()" class="dropbtn">Algorithms</button>
+                <button class="button" style="color: white;">Copy Grid</button>
+                <button class="button" style="color: white;">Paste Grid</button>
+                <div id="myDropdown" class="dropdown-content" style=" position: absolute;
+                top: 100%; /* Bottom of button */
+                right: 0;
+                margin-left: -100px; /* More to the left */">
+                  <a href="#home">A*</a>
+                  <a href="#about">Dijkstra's Algorithm</a>
+                  <a href="#contact">Breadth First</a>
+                  <a href="#">Depth First</a>  
+                </div>
               </div>
-          <input class="button" style="background-color: rgb(121, 224, 231); /* Green background */
-          border: white; /* Green border */
-          color: white; /* White text */
-          padding: 10px 24px; /* Some padding */
-          cursor: pointer; /* Pointer/hand icon */
-          float: left; /* Float the buttons side by side */"type="reset" value="Reset">  
-          <button onclick="myFunction()" class="dropbtn">Algorithms</button>
-          <button class="button" style="color: white; padding: 11.5px 12px">Copy Grid</button>
-          <button class="button" style="color: white; padding: 11.5px 12px">Paste Grid</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#home">A* </a>
-            <a href="#about">Dijkstra's Algorithm</a>
-            <a href="#contact">Breadth First</a>
-            <a href="#">Depth First</a>  
+        </td>
+        <td><input type="reset" value="Reset" style="background-color: rgb(121, 224, 231);  margin-top: -9px; margin-left: 30px;
+            color: white;  padding: 16px 221px;  font-size: 16px; border: none; cursor: pointer;
+            display: block;
+            position: absolute; top: 930px;
+            left: 47.7%;
+            transform: translateY(-50%) translateX(-50%);"></td>
+        <td>    <div class="dropdown" style="float: right; margin-top: -10px; margin-left: 80px;">
+            <button onclick="myFunction()" class="dropbtn">Algorithms</button>
+            <button class="button" style="color: white;">Copy Grid</button>
+            <button class="button" style="color: white;">Paste Grid</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#home">A* </a>
+              <a href="#about">Dijkstra's Algorithm</a>
+              <a href="#contact">Breadth First</a>
+              <a href="#">Depth First</a>  
+            </div>
           </div> 
-        
-    </td>
+          </td>
         </tr>
         </tbody>
     </table>
